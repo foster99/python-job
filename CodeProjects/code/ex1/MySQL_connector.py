@@ -2,13 +2,14 @@ import mysql.connector
 from mysql.connector import Error, connect, errorcode
 from mysql.connector import connection
 
+# Clase encargada de conectarse e interactuar con una base de datos MySQL.
 class MySQL_connector:
 
     def __init__(self):
         self.connection  = None
 
+    # Crea una conexion una base de datos mySQL dados su URL, nombre, usuario y contraseña
     def connect_to_database(self, DB_url_, DB_name_, DB_user_, DB_pass_) -> bool:
-
         try:
             self.connection = mysql.connector.connect(host=DB_url_,
                                                 database=DB_name_,
@@ -30,6 +31,7 @@ class MySQL_connector:
             print("Error while connecting to MySQL", e)
             return False
 
+    # Crea una base de datos con el nombre pasado por parámetro en la conexión actual.
     def create_database(self, DB_name_) -> bool:
 
         if self.connection.is_connected():
@@ -46,6 +48,8 @@ class MySQL_connector:
             print("Failed creating database: {}".format(err))
             exit(1)
 
+    # Selecciona una base de datos con el nombre pasado por parámetro en la conexión actual.
+    # Admite un flag que crea dicha base de datos si esta no existe.
     def select_database(self, DB_name_, create_if_missing=True) -> bool:
 
         if self.connection.is_connected():
@@ -68,6 +72,7 @@ class MySQL_connector:
                 print(err)
                 return False
 
+    # Añade un conjunto de tablas a la base de datos seleccionada en la conexión actual.
     def add_tables_to_database(self, tables) -> bool:
 
         if self.connection.is_connected():
@@ -94,6 +99,7 @@ class MySQL_connector:
         
         return True
 
+    # Cierra la conexión actual con la base de datos.
     def close_database_connection(self) -> bool:
 
         if self.connection.is_connected():
@@ -104,6 +110,7 @@ class MySQL_connector:
             print("There is not a connection to the database")
             return False
 
+    # Ejecuta el comando DROP sobre la tabla con el nombre dado en la base de datos seleccionada en la conexión actual.
     def drop_table(self, table_name) -> bool:
 
         if self.connection.is_connected():
@@ -128,6 +135,7 @@ class MySQL_connector:
         
         return True
     
+    # Imprime en terminal las tablas que contiene la base de datos seleccionada en la conexión actual.
     def show_tables(self):
         
         if self.connection.is_connected():
@@ -146,6 +154,7 @@ class MySQL_connector:
             print(err.msg)
             return False
     
+    # Ejecuta el comando DESCRIBE sobre la tabla con el nombre dado en la base de datos seleccionada en la conexión actual.
     def describe_table(self, table_name):
 
         if self.connection.is_connected():
@@ -167,6 +176,7 @@ class MySQL_connector:
             print(err.msg)
             return False
 
+    # Ejecuta el comando SHOW COLUMNS FROM sobre la tabla con el nombre dado en la base de datos seleccionada en la conexión actual.
     def show_columns_from_table(self, table_name):
 
         if self.connection.is_connected():
@@ -187,7 +197,8 @@ class MySQL_connector:
         except mysql.connector.Error as err:
             print(err.msg)
             return False
-        
+    
+    # Inserta en la tabla referida por su nombre, en las columnas dadas, el conjunto de valores dado.
     def insertInTable(self, table_name, column_names, values):
 
         if self.connection.is_connected():
@@ -260,6 +271,7 @@ class MySQL_connector:
                 
         return True    
 
+    # Ejecuta el comando UPDATE/SET sobre la tabla referida por su nombre, asignando el valor resultante de la ScalarQuery pasada por parámetro, al atributo referido por su nombre.
     def set_derived_value(self, table_name, attribute, scalar_subquery, table_alias=""):
 
         if self.connection.is_connected():
@@ -279,6 +291,7 @@ class MySQL_connector:
             print(err.msg)
             return False
     
+    # Ejecuta una consulta pasada por parámetro en la base de datos seleccionada en la conexión actual y retorna las tuplas resultantes en formato textual.
     def consultant_query(self, query) -> str:
 
         if self.connection.is_connected():
@@ -308,7 +321,8 @@ class MySQL_connector:
             print(err.msg)
             return "Query Error"
     
-    def raw_consultant_query(self, query) -> str:
+    # Ejecuta una consulta pasada por parámetro en la base de datos seleccionada en la conexión actual y las tuplas resultantes en una lista.
+    def raw_consultant_query(self, query):
 
         if self.connection.is_connected():
             cursor = self.connection.cursor()
