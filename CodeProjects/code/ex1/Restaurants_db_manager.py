@@ -152,9 +152,16 @@ class Restaurants_db_manager:
                                     "INNER JOIN Restaurant R ON RS.restaurantUID = R.uidentifier\n"
                                     "WHERE S.uidentifier = target.uidentifier")
             
+            totalReviewsQuery = (  "SELECT SUM(R.total_reviews)\n"
+                                    "FROM Segment S\n"
+                                    "INNER JOIN Restaurant_Segment_Association RS ON S.uidentifier = RS.segmentUID\n"
+                                    "INNER JOIN Restaurant R ON RS.restaurantUID = R.uidentifier\n"
+                                    "WHERE S.uidentifier = target.uidentifier")
+
             self.mySqlDB.set_derived_value('Segment', 'avgPopularity', avgPopularityQuery, table_alias='target')
             self.mySqlDB.set_derived_value('Segment', 'avgSatisfaction', avgSatisfactionQuery, table_alias='target')
             self.mySqlDB.set_derived_value('Segment', 'avgPrice', avgPriceQuery, table_alias='target')
+            self.mySqlDB.set_derived_value('Segment', 'totalReviews', totalReviewsQuery, table_alias='target')
 
     def _get_operator_symbol(self, op, null_is_involved) -> str:
 

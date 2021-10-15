@@ -48,6 +48,12 @@ def main():
     RESTAURANTS_PATH = './data/restaurants_input.json'
     SEGMENTS_PATH = './data/segments_input.json'
     
+
+
+
+
+    # Primer Apartado
+
     dbm = rdbm.Restaurants_db_manager()
     dbm.connect(DB_URL, DB_NAME, DB_USER, DB_PASS)
     dbm.select_database(DB_NAME)
@@ -55,6 +61,13 @@ def main():
     dbm.load_tables(TABLES)
     dbm.import_restaurants_to_mySqlDB(RESTAURANTS_PATH)
     dbm.import_segments_to_mySqlDB(SEGMENTS_PATH)
+
+
+
+
+
+
+    # Segundo Apartado
 
     params1 = {
         "popularity_rate": {"gt": 8},
@@ -74,6 +87,13 @@ def main():
         "satisfaction_rate": {"gt": 9},
     }
     print(dbm.query_restaurants(params3))
+
+
+
+
+
+
+    # Tercer Apartado
 
     data = dbm.export_all_data()
     file = open("./data/data.json","w")
