@@ -1,8 +1,8 @@
-import sys
 import mysql.connector
 from mysql.connector import Error, connect, errorcode
+from mysql.connector import connection
 
-class MySql_manager:
+class MySQL_connector:
 
     def __init__(self):
         self.connection  = None
@@ -188,4 +188,146 @@ class MySql_manager:
             print(err.msg)
             return False
         
+    def insertInTable(self, table_name, column_names, values):
 
+        if self.connection.is_connected():
+            cursor = self.connection.cursor()
+        else:
+            print("There is not a connection to the database")
+            return False
+        
+        
+        print(f"Inserting values into table {table_name}:")
+
+        # format column_names to MySQL format
+        formated_column_names = ""
+        for column in column_names:
+            formated_column_names += column + ","
+        formated_column_names = formated_column_names[:-1]
+
+
+        formated_values = ""
+        skipCommaRow = True
+        for row in values:
+            
+            if not skipCommaRow:
+                formated_values += ","
+            else:
+                skipCommaRow = False
+
+            formated_values += "\n("
+
+            skipCommaField = True
+            # format rows to MySQL format
+            for field in row:
+                if not skipCommaField:
+                    formated_values += ","
+                else:
+                    skipCommaField = False
+                formated_values += str(field)
+            
+            formated_values += ")"
+            
+        try:
+            # print(f"INSERT INTO {table_name} ({formated_column_names}) VALUES {formated_values};")
+            cursor.execute(f"INSERT INTO {table_name} ({formated_column_names}) VALUES {formated_values};")
+            self.connection.commit()
+        except mysql.connector.Error as err:
+            # if err.errno != errorcode.ER_DUP_ENTRY:
+            print(err.msg)
+
+        """
+            for row in values:
+            
+            formated_values = ""
+            skipComma = True
+            # format rows to MySQL format
+            for field in row:
+                if not skipComma:
+                    formated_values += ","
+                else:
+                    skipComma = False
+                formated_values += str(field)
+            
+            try:
+                # print(f"INSERT INTO {table_name} ({formated_column_names}) VALUES {formated_values};")
+                cursor.execute(f"INSERT INTO {table_name} ({formated_column_names}) VALUES ({formated_values});")
+                self.connection.commit()
+            except mysql.connector.Error as err:
+                # if err.errno != errorcode.ER_DUP_ENTRY:
+                print(err.msg)
+        """
+                
+        return True    
+
+    def set_derived_value(self, table_name, attribute, scalar_subquery, table_alias=""):
+
+        if self.connection.is_connected():
+            cursor = self.connection.cursor()
+        else:
+            print("There is not a connection to the database")
+            return False
+
+        try:
+            print(f"Setting attribute {attribute} from table {table_name}:")
+
+            cursor.execute(f"UPDATE {table_name} {table_alias} SET {attribute} = ({scalar_subquery});")
+            self.connection.commit()
+            return True
+
+        except mysql.connector.Error as err:
+            print(err.msg)
+            return False
+    
+    def consultant_query(self, query) -> str:
+
+        if self.connection.is_connected():
+            cursor = self.connection.cursor()
+        else:
+            print("There is not a connection to the database")
+            return "Query Error"
+
+        try:
+            print(f"Launching query {query}:")
+            cursor.execute(query)
+
+            returned_value = ""
+            count = 0
+            for x in cursor.fetchall():
+                returned_value += f"  -> {x}\n"
+                count += 1
+
+            if cursor.rowcount == 0:
+                returned_value = "-> There is not a restaurant that satifies the given conditions.\n" + returned_value
+            else:
+                returned_value = f"-> The database returned {cursor.rowcount} restaurants:\n" + returned_value
+
+            return returned_value
+
+        except mysql.connector.Error as err:
+            print(err.msg)
+            return "Query Error"
+    
+    def raw_consultant_query(self, query) -> str:
+
+        if self.connection.is_connected():
+            cursor = self.connection.cursor()
+        else:
+            print("There is not a connection to the database")
+            return "Query Error"
+
+        try:
+            print(f"Launching query {query}:")
+            cursor.execute(query)
+
+            returned_value = []
+            for x in cursor.fetchall():
+                returned_value.append(x)
+                
+            return returned_value
+
+        except mysql.connector.Error as err:
+            print(err.msg)
+            return "Query Error"
+
+    
