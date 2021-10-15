@@ -96,7 +96,7 @@ def main():
     # Tercer Apartado
 
     data = dbm.export_all_data()
-    file = open("./data/data.json","w")
+    file = open("./data/exported_data.json","w")
     file.write(data)
     file.close()
 
