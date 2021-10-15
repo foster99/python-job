@@ -1,0 +1,17 @@
+QT.multimedia_private.VERSION = 5.12.9
+QT.multimedia_private.name = QtMultimedia
+QT.multimedia_private.module =
+QT.multimedia_private.libs = $$QT_MODULE_LIB_BASE
+QT.multimedia_private.includes = $$QT_MODULE_INCLUDE_BASE/QtMultimedia/5.12.9 $$QT_MODULE_INCLUDE_BASE/QtMultimedia/5.12.9/QtMultimedia
+QT.multimedia_private.frameworks =
+QT.multimedia_private.depends = core_private gui_private multimedia
+QT.multimedia_private.uses =
+QT.multimedia_private.module_config = v2 internal_module
+QT.multimedia_private.enabled_features = alsa gstreamer_1_0 gstreamer gstreamer_app gstreamer_encodingprofiles linux_v4l
+QT.multimedia_private.disabled_features = directshow directshow-player evr gpu_vivante gstreamer_0_10 gstreamer_photography openal pulseaudio resourcepolicy wasapi wmf wmf-player wmsdk wshellitem
+QMAKE_LIBS_ALSA = /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/x86_64-conda-linux-gnu/sysroot/usr/lib64/libasound.so
+QMAKE_LIBS_GSTREAMER = /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/lib/libgstpbutils-1.0.so /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/lib/libgstaudio-1.0.so /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/lib/libgstvideo-1.0.so /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/lib/libgstbase-1.0.so /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/lib/libgsttag-1.0.so /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/lib/libgstreamer-1.0.so /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/lib/libgobject-2.0.so /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/lib/libglib-2.0.so
+QMAKE_INCDIR_GSTREAMER = /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/include/gstreamer-1.0 /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/include /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/include/glib-2.0 /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/lib/glib-2.0/include /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/include
+QMAKE_DEPENDS_GSTREAMER_APP_CC = GSTREAMER
+QMAKE_DEPENDS_GSTREAMER_APP_LD = GSTREAMER
+QMAKE_LIBS_GSTREAMER_APP = /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/lib/libgstapp-1.0.so

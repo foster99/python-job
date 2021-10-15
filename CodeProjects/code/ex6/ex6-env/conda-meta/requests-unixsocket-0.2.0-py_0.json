@@ -1,0 +1,156 @@
+{
+  "build": "py_0",
+  "build_number": 0,
+  "channel": "https://conda.anaconda.org/conda-forge/noarch",
+  "constrains": [],
+  "depends": [
+    "python",
+    "requests >=1.11,<3",
+    "urllib3 >=1.8,<2"
+  ],
+  "extracted_package_dir": "/home/edgar/anaconda3/pkgs/requests-unixsocket-0.2.0-py_0",
+  "features": "",
+  "files": [
+    "lib/python3.9/site-packages/requests_unixsocket-0.2.0.dist-info/AUTHORS",
+    "lib/python3.9/site-packages/requests_unixsocket-0.2.0.dist-info/INSTALLER",
+    "lib/python3.9/site-packages/requests_unixsocket-0.2.0.dist-info/LICENSE",
+    "lib/python3.9/site-packages/requests_unixsocket-0.2.0.dist-info/METADATA",
+    "lib/python3.9/site-packages/requests_unixsocket-0.2.0.dist-info/RECORD",
+    "lib/python3.9/site-packages/requests_unixsocket-0.2.0.dist-info/WHEEL",
+    "lib/python3.9/site-packages/requests_unixsocket-0.2.0.dist-info/pbr.json",
+    "lib/python3.9/site-packages/requests_unixsocket-0.2.0.dist-info/top_level.txt",
+    "lib/python3.9/site-packages/requests_unixsocket/__init__.py",
+    "lib/python3.9/site-packages/requests_unixsocket/adapters.py",
+    "lib/python3.9/site-packages/requests_unixsocket/tests/test_requests_unixsocket.py",
+    "lib/python3.9/site-packages/requests_unixsocket/testutils.py",
+    "lib/python3.9/site-packages/requests_unixsocket/__pycache__/__init__.cpython-39.pyc",
+    "lib/python3.9/site-packages/requests_unixsocket/__pycache__/adapters.cpython-39.pyc",
+    "lib/python3.9/site-packages/requests_unixsocket/tests/__pycache__/test_requests_unixsocket.cpython-39.pyc",
+    "lib/python3.9/site-packages/requests_unixsocket/__pycache__/testutils.cpython-39.pyc"
+  ],
+  "fn": "requests-unixsocket-0.2.0-py_0.tar.bz2",
+  "license": "Apache 2.0",
+  "license_family": "APACHE",
+  "link": {
+    "source": "/home/edgar/anaconda3/pkgs/requests-unixsocket-0.2.0-py_0",
+    "type": 1
+  },
+  "md5": "1e94a233d2f2c81b2bf11bd43a515fbe",
+  "name": "requests-unixsocket",
+  "noarch": "python",
+  "package_tarball_full_path": "/home/edgar/anaconda3/pkgs/requests-unixsocket-0.2.0-py_0.tar.bz2",
+  "package_type": "noarch_python",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "site-packages/requests_unixsocket-0.2.0.dist-info/AUTHORS",
+        "path_type": "hardlink",
+        "sha256": "08096868dc2031ba50a7509e623713e857834aa4a0519329a5f57c15d7854a63",
+        "sha256_in_prefix": "08096868dc2031ba50a7509e623713e857834aa4a0519329a5f57c15d7854a63",
+        "size_in_bytes": 420
+      },
+      {
+        "_path": "site-packages/requests_unixsocket-0.2.0.dist-info/INSTALLER",
+        "path_type": "hardlink",
+        "sha256": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+        "sha256_in_prefix": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+        "size_in_bytes": 5
+      },
+      {
+        "_path": "site-packages/requests_unixsocket-0.2.0.dist-info/LICENSE",
+        "path_type": "hardlink",
+        "sha256": "cb5e8e7e5f4a3988e1063c142c60dc2df75605f4c46515e776e3aca6df976e14",
+        "sha256_in_prefix": "cb5e8e7e5f4a3988e1063c142c60dc2df75605f4c46515e776e3aca6df976e14",
+        "size_in_bytes": 11325
+      },
+      {
+        "_path": "site-packages/requests_unixsocket-0.2.0.dist-info/METADATA",
+        "path_type": "hardlink",
+        "sha256": "c1457567d52762672cf791d1ec9310aefc20c71878962781b92986b9f5fd054e",
+        "sha256_in_prefix": "c1457567d52762672cf791d1ec9310aefc20c71878962781b92986b9f5fd054e",
+        "size_in_bytes": 3545
+      },
+      {
+        "_path": "site-packages/requests_unixsocket-0.2.0.dist-info/RECORD",
+        "path_type": "hardlink",
+        "sha256": "22bae86f558b254c271250c35bc9c28b38a513440011a832475406225427b32b",
+        "sha256_in_prefix": "22bae86f558b254c271250c35bc9c28b38a513440011a832475406225427b32b",
+        "size_in_bytes": 1299
+      },
+      {
+        "_path": "site-packages/requests_unixsocket-0.2.0.dist-info/WHEEL",
+        "path_type": "hardlink",
+        "sha256": "87f6959f9381d8811152331b8b6a6e72647fcf3589b64df4dd85ef861eb4349f",
+        "sha256_in_prefix": "87f6959f9381d8811152331b8b6a6e72647fcf3589b64df4dd85ef861eb4349f",
+        "size_in_bytes": 110
+      },
+      {
+        "_path": "site-packages/requests_unixsocket-0.2.0.dist-info/pbr.json",
+        "path_type": "hardlink",
+        "sha256": "6fe91c054daf5bf00eca9c184970ccba2b709365a8e0c0b9ed8f4f9f1e497d99",
+        "sha256_in_prefix": "6fe91c054daf5bf00eca9c184970ccba2b709365a8e0c0b9ed8f4f9f1e497d99",
+        "size_in_bytes": 47
+      },
+      {
+        "_path": "site-packages/requests_unixsocket-0.2.0.dist-info/top_level.txt",
+        "path_type": "hardlink",
+        "sha256": "6351046ef91e0b993c357c283646aa8de0e5c76a0319f509adb12e6db05b8dc7",
+        "sha256_in_prefix": "6351046ef91e0b993c357c283646aa8de0e5c76a0319f509adb12e6db05b8dc7",
+        "size_in_bytes": 20
+      },
+      {
+        "_path": "site-packages/requests_unixsocket/__init__.py",
+        "path_type": "hardlink",
+        "sha256": "fd2cf24e77b12b38427e6b622116eb0e92cda4a609b9fd35432c8d1f0efa6c5d",
+        "sha256_in_prefix": "fd2cf24e77b12b38427e6b622116eb0e92cda4a609b9fd35432c8d1f0efa6c5d",
+        "size_in_bytes": 2077
+      },
+      {
+        "_path": "site-packages/requests_unixsocket/adapters.py",
+        "path_type": "hardlink",
+        "sha256": "5215e4104ad6b2cf83f7471e84996d5ea3d5c707b2e118d59048fbc2ad05160b",
+        "sha256_in_prefix": "5215e4104ad6b2cf83f7471e84996d5ea3d5c707b2e118d59048fbc2ad05160b",
+        "size_in_bytes": 2727
+      },
+      {
+        "_path": "site-packages/requests_unixsocket/tests/test_requests_unixsocket.py",
+        "path_type": "hardlink",
+        "sha256": "1480d4b8cf193e1a43a621f1bdf7fc7f2a8275b26c0837946bc98aaed4817123",
+        "sha256_in_prefix": "1480d4b8cf193e1a43a621f1bdf7fc7f2a8275b26c0837946bc98aaed4817123",
+        "size_in_bytes": 5196
+      },
+      {
+        "_path": "site-packages/requests_unixsocket/testutils.py",
+        "path_type": "hardlink",
+        "sha256": "9275383f896fc2fa206c4a91009f97efba231c3d95e6b4c371868b6adfc9ade4",
+        "sha256_in_prefix": "9275383f896fc2fa206c4a91009f97efba231c3d95e6b4c371868b6adfc9ade4",
+        "size_in_bytes": 3093
+      },
+      {
+        "_path": "lib/python3.9/site-packages/requests_unixsocket/__pycache__/__init__.cpython-39.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "lib/python3.9/site-packages/requests_unixsocket/__pycache__/adapters.cpython-39.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "lib/python3.9/site-packages/requests_unixsocket/tests/__pycache__/test_requests_unixsocket.cpython-39.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "lib/python3.9/site-packages/requests_unixsocket/__pycache__/testutils.cpython-39.pyc",
+        "path_type": "pyc_file"
+      }
+    ],
+    "paths_version": 1
+  },
+  "requested_spec": "None",
+  "sha256": "ec25c2a8ce5cafe62513ace969d341567614e8b17c7cb6da2b5f7a493548bf3b",
+  "size": 14185,
+  "subdir": "noarch",
+  "timestamp": 1566154100567,
+  "track_features": "",
+  "url": "https://conda.anaconda.org/conda-forge/noarch/requests-unixsocket-0.2.0-py_0.tar.bz2",
+  "version": "0.2.0"
+}

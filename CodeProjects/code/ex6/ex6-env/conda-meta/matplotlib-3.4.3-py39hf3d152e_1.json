@@ -1,0 +1,37 @@
+{
+  "build": "py39hf3d152e_1",
+  "build_number": 1,
+  "channel": "https://conda.anaconda.org/conda-forge/linux-64",
+  "constrains": [],
+  "depends": [
+    "matplotlib-base >=3.4.3,<3.4.4.0a0",
+    "pyqt",
+    "python >=3.9,<3.10.0a0",
+    "python_abi 3.9.* *_cp39"
+  ],
+  "extracted_package_dir": "/home/edgar/anaconda3/pkgs/matplotlib-3.4.3-py39hf3d152e_1",
+  "features": "",
+  "files": [],
+  "fn": "matplotlib-3.4.3-py39hf3d152e_1.tar.bz2",
+  "license": "LicenseRef-PSF-based",
+  "license_family": "PSF",
+  "link": {
+    "source": "/home/edgar/anaconda3/pkgs/matplotlib-3.4.3-py39hf3d152e_1",
+    "type": 1
+  },
+  "md5": "8eb61d4bdad97d19fa51992dde8e2c43",
+  "name": "matplotlib",
+  "package_tarball_full_path": "/home/edgar/anaconda3/pkgs/matplotlib-3.4.3-py39hf3d152e_1.tar.bz2",
+  "paths_data": {
+    "paths": [],
+    "paths_version": 1
+  },
+  "requested_spec": "matplotlib",
+  "sha256": "e7c95ddca1c0346b3d528dbf3d96cfe4faae8eedc33fb7c6e08ecd138c7e2991",
+  "size": 7300,
+  "subdir": "linux-64",
+  "timestamp": 1632417013784,
+  "track_features": "",
+  "url": "https://conda.anaconda.org/conda-forge/linux-64/matplotlib-3.4.3-py39hf3d152e_1.tar.bz2",
+  "version": "3.4.3"
+}

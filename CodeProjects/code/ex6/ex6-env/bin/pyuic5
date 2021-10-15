@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /home/edgar/Escritorio/python-job/CodeProjects/code/ex6/ex6-env/bin/python -m PyQt5.uic.pyuic ${1+"$@"}
