@@ -158,10 +158,10 @@ class Restaurants_db_manager:
                                     "INNER JOIN Restaurant R ON RS.restaurantUID = R.uidentifier\n"
                                     "WHERE S.uidentifier = target.uidentifier")
 
-            self.mySqlDB.set_derived_value('Segment', 'avgPopularity', avgPopularityQuery, table_alias='target')
-            self.mySqlDB.set_derived_value('Segment', 'avgSatisfaction', avgSatisfactionQuery, table_alias='target')
-            self.mySqlDB.set_derived_value('Segment', 'avgPrice', avgPriceQuery, table_alias='target')
-            self.mySqlDB.set_derived_value('Segment', 'totalReviews', totalReviewsQuery, table_alias='target')
+            self.mySqlDB.set_derived_value('Segment', 'average_popularity_rate', avgPopularityQuery, table_alias='target')
+            self.mySqlDB.set_derived_value('Segment', 'average_satisfaction_rate', avgSatisfactionQuery, table_alias='target')
+            self.mySqlDB.set_derived_value('Segment', 'average_price', avgPriceQuery, table_alias='target')
+            self.mySqlDB.set_derived_value('Segment', 'total_reviews', totalReviewsQuery, table_alias='target')
 
     def _get_operator_symbol(self, op, null_is_involved) -> str:
 
@@ -229,17 +229,9 @@ class Restaurants_db_manager:
         query = f"SELECT * FROM Restaurant R WHERE {where_statement};"
         return self.mySqlDB.consultant_query(query)
 
-    def get_all_segments(self):
-
-        query = f"SELECT S.uidentifier, S.name, S.size FROM Segment S;"
-
-        list_of_segments = self.mySqlDB.raw_consultant_query(query)
-
-        for segment in list_of_segments:
-            segmentUID, name, size = segment
-            segments[segmentUID] = (name, size, segmentUID, {})
-
-        return f"{type(text)} \n \n {text}"
+    def get_all_segments(self, dictionary=False):
+        
+        return self.mySqlDB.consultant_query("SELECT * FROM Segment S;", dict_=dictionary)
 
     def export_all_data(self) -> str:
         

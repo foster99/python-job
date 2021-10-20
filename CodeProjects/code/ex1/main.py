@@ -15,10 +15,10 @@ def main():
         "  `name` VARCHAR(255) NOT NULL,"
         "  `size` INTEGER NOT NULL,"
         "  `uidentifier` VARCHAR(255) PRIMARY KEY,"
-        "  `avgPopularity` DOUBLE,"
-        "  `avgSatisfaction` DOUBLE,"
-        "  `avgPrice` DOUBLE,"
-        "  `totalReviews` INTEGER"
+        "  `average_popularity_rate` DOUBLE,"
+        "  `average_satisfaction_rate` DOUBLE,"
+        "  `average_price` DOUBLE,"
+        "  `total_reviews` INTEGER"
         ")")
     TABLES['Restaurant'] = (
         "CREATE TABLE `Restaurant` ("
@@ -31,9 +31,7 @@ def main():
         "  `popularity_rate` DOUBLE NOT NULL,"
         "  `satisfaction_rate` DOUBLE NULL,"
         "  `total_reviews` INTEGER NOT NULL,"
-        "  `average_price` DOUBLE NOT NULL,"
-        "  `segment_uid` VARCHAR(255),"
-        "  FOREIGN KEY (`segment_uid`) REFERENCES `Segment` (`uidentifier`)"
+        "  `average_price` DOUBLE NOT NULL"
         ")")
     TABLES['Restaurant_Segment_Association'] = (
         "CREATE TABLE `Restaurant_Segment_Association` ("
