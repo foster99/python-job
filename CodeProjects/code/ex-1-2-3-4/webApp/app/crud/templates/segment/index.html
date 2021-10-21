@@ -119,9 +119,14 @@
                                         <th>total_reviews</th>
                                         <th>
                                             <div align="center" class="btn_crear mb-3">
-                                                <a href="crear" type="button" class="btn btn-primary">Create
-                                                    Segment</a>
+                                                <a href="crear" type="button" class="btn btn-primary">Create Segment</a>
                                             </div>
+
+
+                                            <form method="POST" id="my_ultra_update_omega_button_avg_wow" action="update_avgs">{% csrf_token %}
+                                                <!-- <button type="submit" >Update Averages</button> -->
+                                                <a onclick="document.getElementById('my_ultra_update_omega_button_avg_wow').submit()" type="button" class="btn btn-primary">Update Averages</a>
+                                            </form>
                                         </th>
                                     </tr>
                                 </thead>

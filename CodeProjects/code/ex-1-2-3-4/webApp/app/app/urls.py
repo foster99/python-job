@@ -14,27 +14,29 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from crud.views import *
+from django.urls import path, include
+from crud import views as views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
- 
-    path('restaurant/', RestaurantListado.as_view(template_name = "restaurant/index.html"), name='r_leer'),
-    path('restaurant/detalle/<slug:pk>', RestaurantDetalle.as_view(template_name = "restaurant/detalles.html"), name='r_detalles'),
-    path('restaurant/crear', RestaurantCrear.as_view(template_name = "restaurant/crear.html"), name='r_crear'),
-    path('restaurant/editar/<slug:pk>', RestaurantActualizar.as_view(template_name = "restaurant/actualizar.html"), name='r_actualizar'), 
-    path('restaurant/eliminar/<slug:pk>', RestaurantEliminar.as_view(), name='r_eliminar'),
+     
+    path('', views.redirectRestaurant, name='home'),
+    path('restaurant/', views.RestaurantListado.as_view(template_name = "restaurant/index.html"), name='r_leer'),
+    path('restaurant/detalle/<slug:pk>', views.RestaurantDetalle.as_view(template_name = "restaurant/detalles.html"), name='r_detalles'),
+    path('restaurant/crear', views.RestaurantCrear.as_view(template_name = "restaurant/crear.html"), name='r_crear'),
+    path('restaurant/editar/<slug:pk>', views.RestaurantActualizar.as_view(template_name = "restaurant/actualizar.html"), name='r_actualizar'), 
+    path('restaurant/eliminar/<slug:pk>', views.RestaurantEliminar.as_view(), name='r_eliminar'),
 
-    path('segment/', SegmentListado.as_view(template_name = "segment/index.html"), name='s_leer'),
-    path('segment/detalle/<slug:pk>', SegmentDetalle.as_view(template_name = "segment/detalles.html"), name='s_detalles'),
-    path('segment/crear', SegmentCrear.as_view(template_name = "segment/crear.html"), name='s_crear'),
-    path('segment/editar/<slug:pk>', SegmentActualizar.as_view(template_name = "segment/actualizar.html"), name='s_actualizar'), 
-    path('segment/eliminar/<slug:pk>', SegmentEliminar.as_view(), name='s_eliminar'),
+    path('segment/', views.SegmentListado.as_view(template_name = "segment/index.html"), name='s_leer'),
+    path('segment/detalle/<slug:pk>', views.SegmentDetalle.as_view(template_name = "segment/detalles.html"), name='s_detalles'),
+    path('segment/crear', views.SegmentCrear.as_view(template_name = "segment/crear.html"), name='s_crear'),
+    path('segment/editar/<slug:pk>', views.SegmentActualizar.as_view(template_name = "segment/actualizar.html"), name='s_actualizar'), 
+    path('segment/eliminar/<slug:pk>', views.SegmentEliminar.as_view(), name='s_eliminar'),
+    path('segment/update_avgs', views.updateAvgs, name='s_updateavgs'),
 
-    path('restaurant_segment_association/', RestaurantSegmentAssociationListado.as_view(template_name = "restaurant_segment_association/index.html"), name='rs_leer'),
-    path('restaurant_segment_association/detalle/<slug:pk>', RestaurantSegmentAssociationDetalle.as_view(template_name = "restaurant_segment_association/detalles.html"), name='rs_detalles'),
-    path('restaurant_segment_association/crear', RestaurantSegmentAssociationCrear.as_view(template_name = "restaurant_segment_association/crear.html"), name='rs_crear'),
-    path('restaurant_segment_association/editar/<slug:pk>', RestaurantSegmentAssociationActualizar.as_view(template_name = "restaurant_segment_association/actualizar.html"), name='rs_actualizar'), 
-    path('restaurant_segment_association/eliminar/<slug:pk>', RestaurantSegmentAssociationEliminar.as_view(), name='rs_eliminar'),
+    path('restaurant_segment_association/', views.RestaurantSegmentAssociationListado.as_view(template_name = "restaurant_segment_association/index.html"), name='rs_leer'),
+    path('restaurant_segment_association/detalle/<slug:pk>', views.RestaurantSegmentAssociationDetalle.as_view(template_name = "restaurant_segment_association/detalles.html"), name='rs_detalles'),
+    path('restaurant_segment_association/crear', views.RestaurantSegmentAssociationCrear.as_view(template_name = "restaurant_segment_association/crear.html"), name='rs_crear'),
+    path('restaurant_segment_association/editar/<slug:pk>', views.RestaurantSegmentAssociationActualizar.as_view(template_name = "restaurant_segment_association/actualizar.html"), name='rs_actualizar'), 
+    path('restaurant_segment_association/eliminar/<slug:pk>', views.RestaurantSegmentAssociationEliminar.as_view(), name='rs_eliminar'),
 ]  

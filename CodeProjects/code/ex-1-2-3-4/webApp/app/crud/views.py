@@ -1,3 +1,4 @@
+from django.http.response import HttpResponseNotAllowed
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -6,8 +7,9 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin 
 from django import forms
 from .models import *
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.db import connection, transaction
 
 def index(request):
     return HttpResponse("Hello, world. You're at the crud index.")
@@ -152,6 +154,53 @@ class SegmentListado(ListView):
             return qs
 
         return qs.raw(compute_select_query('Segment', attribute, operator, compared_value))
+
+def redirectRestaurant(request):
+    return HttpResponseRedirect('/restaurant')
+
+def updateAvgs(request):
+
+    if request.method =='POST':
+
+        cursor = connection.cursor()
+
+        avgPopularityQuery = ("SELECT AVG(R.popularity_rate)\n"
+                                "FROM Segment S\n"
+                                "INNER JOIN Restaurant_Segment_Association RS ON S.uidentifier = RS.segmentUID\n"
+                                "INNER JOIN Restaurant R ON RS.restaurantUID = R.uidentifier\n"
+                                "WHERE S.uidentifier = target.uidentifier")
+
+        cursor.execute(f"UPDATE Segment target SET average_popularity_rate = ({avgPopularityQuery});")
+
+        
+        avgSatisfactionQuery = ("SELECT AVG(R.satisfaction_rate)\n"
+                                "FROM Segment S\n"
+                                "INNER JOIN Restaurant_Segment_Association RS ON S.uidentifier = RS.segmentUID\n"
+                                "INNER JOIN Restaurant R ON RS.restaurantUID = R.uidentifier\n"
+                                "WHERE S.uidentifier = target.uidentifier")
+
+        cursor.execute(f"UPDATE Segment target SET average_satisfaction_rate = ({avgSatisfactionQuery});")
+
+
+        avgPriceQuery = ("SELECT AVG(R.average_price)\n"
+                        "FROM Segment S\n"
+                        "INNER JOIN Restaurant_Segment_Association RS ON S.uidentifier = RS.segmentUID\n"
+                        "INNER JOIN Restaurant R ON RS.restaurantUID = R.uidentifier\n"
+                        "WHERE S.uidentifier = target.uidentifier")
+
+        cursor.execute(f"UPDATE Segment target SET average_price = ({avgPriceQuery});")
+
+
+        totalReviewsQuery = ("SELECT SUM(R.total_reviews)\n"
+                            "FROM Segment S\n"
+                            "INNER JOIN Restaurant_Segment_Association RS ON S.uidentifier = RS.segmentUID\n"
+                            "INNER JOIN Restaurant R ON RS.restaurantUID = R.uidentifier\n"
+                            "WHERE S.uidentifier = target.uidentifier")
+        
+        cursor.execute(f"UPDATE Segment target SET total_reviews = ({totalReviewsQuery});")
+
+    return HttpResponseRedirect('/segment')
+
 
 
 # RestaurantSegmentAssociation
