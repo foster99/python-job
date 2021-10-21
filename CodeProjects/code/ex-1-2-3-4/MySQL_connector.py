@@ -297,8 +297,37 @@ class MySQL_connector:
             print(err.msg)
             return False
     
+    def _decode_value(self, init_value):
+
+        value = init_value
+
+        if (type(init_value) is bytearray):
+            value = str(value, 'utf8')
+
+        # null
+        if value is None:
+            return None
+
+        # numeric
+        try:
+            return_value = float(value)
+
+            if '.' in str(return_value):    # float
+                return return_value
+            else:                           # int
+                return int(return_value)
+        except:
+            pass
+
+        # boolean
+        if str(value) == "True": return True
+        if str(value) == "False": return False
+
+        # string
+        return str(value)
+
     # Ejecuta una consulta pasada por parámetro en la base de datos seleccionada en la conexión actual.
-    def consultant_query(self, query, dict_=False):
+    def consultant_query(self, query, dict_=False, decode=True):
 
         if self.connection.is_connected():
             cursor = self.connection.cursor(dictionary=dict_)
@@ -311,12 +340,24 @@ class MySQL_connector:
             cursor.execute(query)
 
             if dict_:
-                return cursor.fetchall()
+
+                list_of_dicts = list(cursor.fetchall())
+
+                if decode:
+                    for dict_ in list_of_dicts:
+                        for key in dict_.keys():
+                            dict_[key] = self._decode_value(dict_[key])
+
+                return list_of_dicts
 
             returned_value = ""
             count = 0
-            for x in cursor.fetchall():
-                returned_value += f"  -> {x}\n"
+            for row in cursor.fetchall():
+                if decode:
+                    decoded_row = tuple([self._decode_value(value) for value in list(row)])
+                    returned_value += f"  -> {decoded_row}\n"
+                else:
+                    returned_value += f"  -> {row}\n"
                 count += 1
 
             return returned_value
@@ -326,7 +367,7 @@ class MySQL_connector:
             return None
     
     # Ejecuta una consulta pasada por parámetro en la base de datos seleccionada en la conexión actual y retorna las tuplas resultantes en formato de diccionario
-    def consultant_query_to_json(self, query):
+    def consultant_query_to_json(self, query, decode=True):
 
         if self.connection.is_connected():
             cursor = self.connection.cursor(dictionary=True)
@@ -345,7 +386,7 @@ class MySQL_connector:
             return "Query Error"
 
     # Ejecuta una consulta pasada por parámetro en la base de datos seleccionada en la conexión actual y las tuplas resultantes en una lista.
-    def raw_consultant_query(self, query):
+    def raw_consultant_query(self, query, decode=True):
 
         if self.connection.is_connected():
             cursor = self.connection.cursor()
@@ -358,8 +399,11 @@ class MySQL_connector:
             cursor.execute(query)
 
             returned_value = []
-            for x in cursor.fetchall():
-                returned_value.append(x)
+            for row in cursor.fetchall():
+                if decode:
+                    returned_value.append(tuple([self._decode_value(value) for value in list(row)]))
+                else:
+                    returned_value.append(row)
                 
             return returned_value
 
