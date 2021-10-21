@@ -8,7 +8,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV "/home/edgar/Escritorio/python-job/CodeProjects/code/ex4/ex4-env"
+setenv VIRTUAL_ENV "/home/edgar/Escritorio/python-job/CodeProjects/code/ex-1-2-3-4/databases_env"
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"
@@ -17,7 +17,7 @@ setenv PATH "$VIRTUAL_ENV/bin:$PATH"
 set _OLD_VIRTUAL_PROMPT="$prompt"
 
 if (! "$?VIRTUAL_ENV_DISABLE_PROMPT") then
-    set prompt = "(ex4-env) $prompt"
+    set prompt = "(databases_env) $prompt"
 endif
 
 alias pydoc python -m pydoc
