@@ -18,23 +18,14 @@ rdbm = Restaurants_MongoDB_manager( url=DB_IP,
                                         password=PASSWORD,
                                         db_name=DB_NAME)
 
+
 def main():
 
-    RESTAURANTS_PATH = './data/restaurants_input.json'
-    SEGMENTS_PATH = './data/segments_input.json'
-
-    print("Droping all collections from DB ...")
-    rdbm.drop_all_collections()
-    print(" -> Succesfully dropped.\n")
-
-    print("Importing data from JSON to Python ...")
-    (restaurants, segments) = rdbm.import_restaurants_and_segments_from_file_to_dict(RESTAURANTS_PATH, SEGMENTS_PATH)
-    print(" -> Succesfully imported.\n")
+    PATH = "./data/exported_data_mongoDB.json"
     
-    print("Importing data from Python to MongoDB ...")
-    rdbm.import_restaurants_and_segments_from_dict_to_db(restaurants, segments)
-    print(" -> Succesfully imported.\n")
-
+    print("Exporting data to file ...")
+    rdbm.export_all_data_to_file(PATH)
+    print("Succesfully exported!")
 
 if __name__ == "__main__":
     main()
