@@ -54,12 +54,12 @@ Para migrar los datos de una base existen dos scripts distintos. Cuando se migra
 
 * Migrar de MySQL a MongoDB:
 
-```
+```console
 python3 ./migrator/migrate_mysql_to_mongo.py
 
 ```
 * Consultas genéricas a la base de datos:
-```
+```console
 python3 ./migrator/migrate_mongo_to_mysql.py
 
 ```
@@ -68,7 +68,7 @@ python3 ./migrator/migrate_mongo_to_mysql.py
 La webApp se ha desarrollado en Django, y se conecta con la base de datos MySQL mediante sus propias librerias (NO hace uso de las interfaces de conexión de los ejercicios anteriores). El front-end utiliza Bootstrap 4.
 
 Para ejecutar el servidor web de forma local, basta con ejecutar el script `.run_web_server.sh`:
-```
+```console
 ./run_web_server.sh
 ```
 La web permite hacer las operaciones básicas CRUD sobre todas las tablas y cuenta con un botón en la sección de Segments para actualizar los valores medios computados a partir de los Restaurantes. 
