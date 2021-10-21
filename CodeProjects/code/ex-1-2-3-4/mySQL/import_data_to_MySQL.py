@@ -4,13 +4,17 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import Restaurants_db_manager as rdbm
 
-def main():
+# Database connection info
+DB_URL  = '192.168.70.70'
+DB_NAME = 'exam_dev'
+DB_USER = 'root'
+DB_PASS = 'delectaRoot1234!'
 
-    # Database connection info
-    DB_URL  = 'sfexam.delectame.develop'
-    DB_NAME = 'exam_dev'
-    DB_USER = 'root'
-    DB_PASS = 'delectaRoot1234!'
+dbm = rdbm.Restaurants_db_manager()
+dbm.connect(DB_URL, DB_NAME, DB_USER, DB_PASS)
+dbm.select_database(DB_NAME)
+
+def main():
 
     # Table definition
     TABLES = {}
@@ -51,60 +55,10 @@ def main():
     RESTAURANTS_PATH = './data/restaurants_input.json'
     SEGMENTS_PATH = './data/segments_input.json'
     
-
-
-
-
-    # Primer Apartado
-
-    dbm = rdbm.Restaurants_db_manager()
-    dbm.connect(DB_URL, DB_NAME, DB_USER, DB_PASS)
-    dbm.select_database(DB_NAME)
     dbm.drop_all_tables()
     dbm.load_tables(TABLES)
     dbm.import_restaurants_to_mySqlDB(RESTAURANTS_PATH)
     dbm.import_segments_to_mySqlDB(SEGMENTS_PATH)
-
-
-
-
-
-
-    # Segundo Apartado
-
-    params1 = {
-        "popularity_rate": {"gt": 8},
-        "city_name": {"eq": 'Madrid'}
-    }
-    result1 = dbm.query_restaurants(params1)
-    print(result1)
-
-
-    params2 = {
-        "popularity_rate": {"lt": 0},
-        "city_name": {"eq": 'Madrid'}
-    }
-    result2 = dbm.query_restaurants(params2)
-    print(result2)
-
-    params3 = {
-        "street_address": {"eq": None},
-        "satisfaction_rate": {"gt": 9},
-    }
-    result3 = dbm.query_restaurants(params3)
-    print(result3)
-
-
-
-
-
-    # Tercer Apartado
-
-    data = dbm.export_all_data()
-    file = open("./data/exported_data.json","w")
-    file.write(data)
-    file.close()
-
     dbm.disconnect()
 
     
