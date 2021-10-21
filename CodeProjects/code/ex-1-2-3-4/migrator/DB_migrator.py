@@ -130,7 +130,7 @@ def migrate_from_mySQL_to_mongoDB(MySQL_credentials, MongoDB_credentials) -> boo
     restaurants = {}
 
     for restaurant in restaurant_list:
-        
+
         if restaurant['uidentifier'] not in restaurants:
             
             restaurants[restaurant['uidentifier']] = {
