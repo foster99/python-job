@@ -1,5 +1,6 @@
 # Ejercicio 5: IKEA CRAWLER
 
+## Pasos seguidos
 1. Mediante el ChromeWebDriver de selenium, obtengo la pagina web con el JavaScript renderizado.
 2. Consulto cual es el total de sofas listados, y sabiendo que se muestran 24 por pagina, solicito la misma url con el valor `?page=(N_sofas/24 + 1)`. De este modo, obtengo la web con el listado de sofás completo.
 3. Una vez cuento con la lista completa, la recorro entera obteniendo la información de cada sofa y guardo si cada uno de ellos tiene variantes o no (sin consultar sus variantes en si mismas).
