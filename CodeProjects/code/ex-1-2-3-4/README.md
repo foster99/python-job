@@ -11,7 +11,7 @@ source ./databases_env/bin/activate
 
 ## Ejercicio 1: MySQL
 
-* Importar datos desde los ficheros `restaurants_input.json` y `segments_input.json`:
+* Importar datos desde los ficheros [restaurants_input.json](./data/restaurants_input.json) y [segments_input.json](./data/segments_input.json):
 
 ```console
 python3 ./mySQL/import_data_to_MySQL.py
@@ -50,7 +50,7 @@ python3 ./mongoDB/export_MongoDB_to_JSON.py
 
 
 ## Ejercicio 3: Data Migration
-Para migrar los datos de una base existen dos scripts distintos. Cuando se migran los datos de una base de datos `A` a una base de datos `B`, primero se eliminan los contenidos de la base de datos `B`, y depues se migran los datos. Los dos scripts hacen uso de funciones definidas en el fichero `./migrator/DB_migrator.py`, el cual a su vez utiliza las interfaces con las bases de datos desarrolladas en los ejercicios 1 y 2.
+Para migrar los datos de una base existen dos scripts distintos. Cuando se migran los datos de una base de datos `A` a una base de datos `B`, primero se eliminan los contenidos de la base de datos `B`, y depues se migran los datos. Los dos scripts hacen uso de funciones definidas en el fichero [DB_migrator.py](./migrator/DB_migrator.py), el cual a su vez utiliza las interfaces con las bases de datos desarrolladas en los ejercicios 1 y 2.
 
 * Migrar de MySQL a MongoDB:
 
