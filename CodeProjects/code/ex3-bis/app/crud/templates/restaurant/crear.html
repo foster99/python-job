@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="theme-color" content="#000000" />
+
+    <title>My CRUD</title>
+
+    {# Cargamos la librería #}
+    {% load bootstrap4 %}
+
+    {# CSS Bootstrap #}
+    {% bootstrap_css %}
+
+    {# Widget Tweaks #}
+    {% load widget_tweaks %}
+
+    {# Archivos #}
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+
+</head>
+
+<body>
+
+    <main role="main">
+
+        <div class="container-fluid  text-center mt-5">
+
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <h1 style="font-size: 28px;">Como crear un CRUD con Django 2 y Bootstrap 4 - Parte 2 (Python 3.7)
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row mb-5">
+
+                <!-- Barra lateral -->
+                <div class="card col-md-1">
+                    <h6 class="mt-4"><strong>Tables</strong></h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item active"> <a href="/restaurant" style="color:#ffffff">Restaurant </a>
+                        </li>
+                        <li class="list-group-item"> <a href="/segment">Segment</a></li>
+                        <li class="list-group-item"> <a href="/restaurant_segment_association">Restaurant Segment
+                                Association</a> </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-10">
+
+                    <div class="table-responsive">
+
+                        <nav aria-label="breadcrumb mb-3">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="./">Restaurants</a></li>
+                                <li class="breadcrumb-item active">Create</li>
+                            </ol>
+                        </nav>
+
+                        <div class="formulario" align="left">
+
+                            <h4>Crear</h4>
+
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <!-- {{ form.as_p }} -->
+                                <div class="form-group">
+                                    <label for="name" class="txt_negrita">name</label>
+                                    {{ form.name|add_class:"form-control" }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="street_address" class="txt_negrita">street_address</label>
+                                    {{ form.street_address|add_class:"form-control" }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="uidentifier" class="txt_negrita">uidentifier</label>
+                                    {{ form.uidentifier|add_class:"form-control" }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="latitude" class="txt_negrita">latitude</label>
+                                    {{ form.latitude|add_class:"form-control" }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="longitude" class="txt_negrita">longitude</label>
+                                    {{ form.longitude|add_class:"form-control" }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="city_name" class="txt_negrita">city_name</label>
+                                    {{ form.city_name|add_class:"form-control" }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="popularity_rate" class="txt_negrita">popularity_rate</label>
+                                    {{ form.popularity_rate|add_class:"form-control" }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="satisfaction_rate" class="txt_negrita">satisfaction_rate</label>
+                                    {{ form.satisfaction_rate|add_class:"form-control" }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="total_reviews" class="txt_negrita">total_reviews</label>
+                                    {{ form.total_reviews|add_class:"form-control" }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="average_price" class="txt_negrita">average_price</label>
+                                    {{ form.average_price|add_class:"form-control" }}
+                                </div>
+                                <button type="submit" class="btn btn-primary">Aceptar</button>
+                                <a href="./" type="submit" class="btn btn-primary">Cancelar</a>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+        </div>
+
+    </main>
+
+    {# JS y jQuery Bootstrap #}
+    {% bootstrap_javascript jquery='full' %}
+
+</body>
+
+</html>

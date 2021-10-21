@@ -35,11 +35,12 @@ def main():
         ")")
     TABLES['Restaurant_Segment_Association'] = (
         "CREATE TABLE `Restaurant_Segment_Association` ("
+        "  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,"
         "  `restaurantUID` VARCHAR(255),"
         "  `segmentUID` VARCHAR(255),"
-        "  FOREIGN KEY (`restaurantUID`) REFERENCES `Restaurant` (`uidentifier`),"
-        "  FOREIGN KEY (`segmentUID`) REFERENCES `Segment` (`uidentifier`),"
-        "  PRIMARY KEY (`segmentUID`,`restaurantUID`)"
+        "  FOREIGN KEY (`restaurantUID`) REFERENCES `Restaurant` (`uidentifier`) ON DELETE CASCADE,"
+        "  FOREIGN KEY (`segmentUID`) REFERENCES `Segment` (`uidentifier`) ON DELETE CASCADE,"
+        "  UNIQUE KEY (`segmentUID`,`restaurantUID`)"
         ")")
 
     # Data paths

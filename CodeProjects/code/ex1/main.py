@@ -37,8 +37,8 @@ def main():
         "CREATE TABLE `Restaurant_Segment_Association` ("
         "  `restaurantUID` VARCHAR(255),"
         "  `segmentUID` VARCHAR(255),"
-        "  FOREIGN KEY (`restaurantUID`) REFERENCES `Restaurant` (`uidentifier`),"
-        "  FOREIGN KEY (`segmentUID`) REFERENCES `Segment` (`uidentifier`),"
+        "  FOREIGN KEY (`restaurantUID`) REFERENCES `Restaurant` (`uidentifier`) ON DELETE CASCADE,"
+        "  FOREIGN KEY (`segmentUID`) REFERENCES `Segment` (`uidentifier`) ON DELETE CASCADE,"
         "  PRIMARY KEY (`segmentUID`,`restaurantUID`)"
         ")")
 

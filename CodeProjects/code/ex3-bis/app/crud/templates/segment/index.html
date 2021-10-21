@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="theme-color" content="#000000" />
+    <title>CRUD</title>
+
+    {# Cargamos la librería #}
+    {% load bootstrap4 %}
+
+    {# CSS Bootstrap #}
+    {% bootstrap_css %}
+
+    {# Widget Tweaks #}
+    {% load widget_tweaks %}
+
+    {# Archivos #}
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+
+</head>
+
+<body>
+    <main>
+        <div class="container-fluid text-center mt-5">
+
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <h1 style="font-size: 28px;">My CRUD
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h5>List of Segments</h5>
+                </div>
+            </div>
+
+            <form method="GET">
+                <select name="attribute">
+                    <option value="" selected disabled>select attribute to filter by</option>
+                    <option value="name">name</option>
+                    <option value="size">size</option>
+                    <option value="uidentifier">uidentifier</option>
+                    <option value="average_popularity_rate">average_popularity_rate</option>
+                    <option value="average_satisfaction_rate">average_satisfaction_rate</option>
+                    <option value="average_price">average_price</option>
+                    <option value="popularity_rate">popularity_rate</option>
+                    <option value="total_reviews">total_reviews</option>
+                </select>
+
+                <select name="operator">
+                    <option value="" selected disabled>select operator</option>
+                    <option value="lt">less</option>
+                    <option value="le">less or equal</option>
+                    <option value="ge">greater or equal</option>
+                    <option value="gt">greater</option>
+                    <option value="eq">equal</option>
+                    <option value="ne">different</option>
+                </select>
+
+                <input name="compared_value" value="" type="text" />
+
+                <button type="submit">Filter</button>
+            </form>
+
+
+
+            <div class="row mb-5">
+
+                <!-- Barra lateral -->
+                <div class="card col-md-1">
+                    <h6 class="mt-4"><strong>Tables</strong></h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> <a href="/restaurant">Restaurant </a>
+                        </li>
+                        <li class="list-group-item active"> <a href="/segment" style="color:#ffffff">Segment</a></li>
+                        <li class="list-group-item"> <a href="/restaurant_segment_association">Restaurant Segment
+                                Association</a> </li>
+                    </ul>
+                </div>
+
+
+
+                <!-- Lista de tuplas -->
+                <div class="col-md-10">
+
+                    <!-- Tabla de tuplas -->
+                    <div class="row mb-5">
+
+                        <div class="table-responsive">
+
+                            {% if messages %}
+                            <ul class="messages list-group mb-3">
+                                {% for message in messages %}
+                                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+
+
+
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <!-- <th width="35%">Name</th> -->
+                                        <th>name</th>
+                                        <th>size</th>
+                                        <th>uidentifier</th>
+                                        <th>average_popularity_rate</th>
+                                        <th>average_satisfaction_rate</th>
+                                        <th>average_price</th>
+                                        <th>total_reviews</th>
+                                        <th>
+                                            <div align="center" class="btn_crear mb-3">
+                                                <a href="crear" type="button" class="btn btn-primary">Create
+                                                    Segment</a>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {% for segment in object_list %}
+                                    <tr>
+                                        <td>{{ segment.name }}</td>
+                                        <td>{{ segment.size }}</td>
+                                        <td>{{ segment.uidentifier }}</td>
+                                        <td>{{ segment.average_popularity_rate }}</td>
+                                        <td>{{ segment.average_satisfaction_rate }}</td>
+                                        <td>{{ segment.average_price }}</td>
+                                        <td>{{ segment.total_reviews }}</td>
+                                        <td>
+
+                                            <form method="POST" action="eliminar/{{segment.uidentifier}}">
+                                                {% csrf_token %}
+                                                <div class="btn-group">
+
+                                                    <a href="detalle/{{segment.uidentifier}}" title="Ver" type="button"
+                                                        class="btn btn-success">Details
+                                                    </a>
+                                                    <a href="editar/{{segment.uidentifier}}" title="Editar"
+                                                        type="button" class="btn btn-primary">Edit </a>
+                                                    <button class="btn btn-danger" onclick="return eliminar();"
+                                                        type="submit">
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            </form>
+
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Paginacion -->
+                    <div class="row mb-1">
+                        <div class="pagination">
+                            <span class="step-links">
+                                {% if page_obj.has_previous %}
+                                <a href="?page=1">« First</a>
+                                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                                {% endif %}
+
+                                <span class="current">
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                </span>
+
+                                {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                                <a href="?page={{ page_obj.paginator.num_pages }}">Last »</a>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </main>
+
+    {# JS y jQuery Bootstrap #}
+    {% bootstrap_javascript jquery='full' %}
+</body>
+
+
+</html>
