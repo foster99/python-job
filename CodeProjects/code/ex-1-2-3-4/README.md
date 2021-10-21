@@ -71,4 +71,4 @@ Para ejecutar el servidor web de forma local, basta con ejecutar el script `.run
 ```console
 ./run_web_server.sh
 ```
-La web permite hacer las operaciones básicas CRUD sobre todas las tablas y cuenta con un botón en la sección de Segments para actualizar los valores medios computados a partir de los Restaurantes. 
+Se puede acceder a ella en el [localhost:8000](http://127.0.0.1:8000/) .La web permite hacer las operaciones básicas CRUD sobre todas las tablas y cuenta con un botón en la sección de Segments para actualizar los valores medios computados a partir de los Restaurantes. 
